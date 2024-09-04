@@ -8,6 +8,12 @@ param (
     [string] $orgName = "linkpeople"
 )
 
+
+if ($PSVersionTable.PSVersion.Major -lt 7 ) {
+    Write-Host("Powershell 7 or greater must be used")
+    exit
+}
+
 enum Mode { 
     PrepareOnly = 1;
     ProcessOnly = 2;
