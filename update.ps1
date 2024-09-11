@@ -66,7 +66,7 @@ function Get-Contact {
         [int] $personId
     )
 
-    $query = "EXECUTE [dbo].[GetZavantiContact] @PersonId = $($personId)" 
+    $query = "EXECUTE [dbo].[GetZavantiContact] @PersonId = $personId" 
     $contact = Invoke-SQL -connectionString $conn -sqlCommand $query
 
     if ($contact.Rows.Count -eq 1) {
@@ -74,7 +74,7 @@ function Get-Contact {
         return [ContactWithId]::new($personId, $row)
     }
     elseif ($contact.Rows.Count -gt 1) {
-        Write-Error "Multiple contact records returned for $(personId)"
+        Write-Error "Multiple contact records returned for $personId"
     }
 }
 
